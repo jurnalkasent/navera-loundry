@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1769d2">
+  <title>Area Pembeli | NAVERA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="pembeli.css">
+</head>
+<body>
+
+  <div id="customerLoginScreen" class="role-login-screen" hidden>
+    <div class="role-login-card">
+      <div class="role-login-icon"><i class="bi bi-person-lock"></i></div>
+      <h2>Area Pembeli NAVERA</h2>
+      <p>Silakan masuk untuk mengakses akun dan pesananmu.</p>
+      <a href="../auth/login.html" class="primary-button">Masuk ke Akun</a>
+      <a href="../index.html">Kembali ke halaman utama</a>
+    </div>
+  </div>
+
+  <div id="customerApp" class="customer-app" hidden>
+    <header class="customer-header">
+      <a href="../index.html" class="customer-brand">
+        <span class="brand-icon"><i class="bi bi-droplet-half"></i></span>
+        <span><strong>NAVERA</strong><small>LAUNDRY & CARE</small></span>
+      </a>
+
+      <nav id="customerNavigation">
+        <button class="customer-nav-link active" data-page="dashboard">Beranda</button>
+        <button class="customer-nav-link" data-page="products">Layanan</button>
+        <button class="customer-nav-link" data-page="orders">Pesanan Saya</button>
+        <button class="customer-nav-link" data-page="history">Riwayat</button>
+        <button class="customer-nav-link" data-page="profile">Profil</button>
+      </nav>
+
+      <div class="customer-header-right">
+        <span id="customerHeaderName">Pembeli</span>
+        <button id="customerLogoutButton" aria-label="Keluar"><i class="bi bi-box-arrow-right"></i></button>
+        <button id="customerMenuToggle" aria-label="Buka menu"><i class="bi bi-list"></i></button>
+      </div>
+    </header>
+
+    <main class="customer-main">
+      <section id="customerPageHome" class="customer-page active" data-page="dashboard">
+        <div class="customer-welcome">
+          <div>
+            <span>WELCOME TO NAVERA</span>
+            <h1>Halo, <strong id="customerWelcomeName">Pelanggan</strong>!</h1>
+            <p>Sudah siap memberikan perawatan terbaik untuk pakaianmu?</p>
+          </div>
+          <div class="welcome-icon"><i class="bi bi-basket2"></i></div>
+        </div>
+
+        <div class="customer-stats">
+          <article><span>Total Pesanan</span><strong id="customerStatTotal">0</strong><i class="bi bi-receipt"></i></article>
+          <article><span>Pesanan Aktif</span><strong id="customerStatActive">0</strong><i class="bi bi-arrow-repeat"></i></article>
+          <article><span>Selesai</span><strong id="customerStatCompleted">0</strong><i class="bi bi-check-circle"></i></article>
+        </div>
+
+        <section class="customer-section">
+          <div class="section-heading"><div><h2>Layanan Kami</h2><p>Pilih perawatan yang sesuai dengan kebutuhanmu.</p></div><button data-open-page="products">Lihat Semua</button></div>
+          <div id="customerFeaturedProducts" class="customer-product-grid"></div>
+        </section>
+
+        <section class="customer-section">
+          <div class="section-heading"><div><h2>Pesanan Terbaru</h2><p>Pantau pesanan laundry milikmu.</p></div><button data-open-page="orders">Lihat Semua</button></div>
+          <div id="customerRecentOrders" class="customer-order-list"></div>
+        </section>
+      </section>
+
+      <section id="customerPageServices" class="customer-page" data-page="products" hidden>
+        <div class="customer-page-heading customer-page-heading-card">
+          <span class="page-heading-icon"><i class="bi bi-stars"></i></span>
+          <div><span class="page-heading-eyebrow">PERAWATAN TERBAIK</span><h1>Produk & Layanan</h1><p>Temukan layanan laundry NAVERA yang sesuai dengan kebutuhanmu.</p></div>
+        </div>
+        <div id="customerProductsGrid" class="customer-product-grid"></div>
+      </section>
+
+      <section id="customerPageOrders" class="customer-page" data-page="orders" hidden>
+        <div class="customer-page-heading customer-page-heading-card">
+          <span class="page-heading-icon"><i class="bi bi-box-seam"></i></span>
+          <div><span class="page-heading-eyebrow">PEMANTAUAN PESANAN</span><h1>Pesanan Saya</h1><p>Pantau status, pembayaran, dan perkembangan setiap pesananmu.</p></div>
+        </div>
+        <div class="customer-filter">
+          <label class="order-search"><i class="bi bi-search"></i><input type="search" id="customerOrderSearch" placeholder="Cari nomor pesanan..." aria-label="Cari nomor pesanan"></label>
+          <label class="order-filter"><i class="bi bi-funnel"></i><select id="customerOrderFilter" aria-label="Filter status pesanan">
+            <option value="">Semua status</option>
+            <option value="PENDING">Menunggu Konfirmasi</option>
+            <option value="ACCEPTED">Pesanan Diterima</option>
+            <option value="PROCESSING">Sedang Dicuci</option>
+            <option value="READY">Siap Diambil</option>
+          </select></label>
+        </div>
+        <div id="customerOrdersList" class="customer-order-list"></div>
+      </section>
+
+      <section id="customerPageHistory" class="customer-page" data-page="history" hidden>
+        <div class="customer-page-heading"><h1>Riwayat Pesanan</h1><p>Semua pesanan dan transaksi laundry Anda, termasuk yang masih diproses.</p></div>
+        <div id="customerHistoryList" class="customer-order-list"></div>
+      </section>
+
+      <section id="customerPageProfile" class="customer-page" data-page="profile" hidden>
+        <div class="customer-page-heading"><h1>Profil Saya</h1><p>Perbarui informasi akun dan alamatmu.</p></div>
+        <div class="customer-panel">
+          <form id="customerProfileForm" class="customer-form">
+            <label>Nama Lengkap<input type="text" id="customerProfileName" name="name" required></label>
+            <label>Username<input type="text" id="customerProfileUsername" disabled></label>
+            <label>Nomor WhatsApp<input type="tel" id="customerProfilePhone" name="phone" required></label>
+            <label>Alamat Lengkap<textarea id="customerProfileAddress" name="address" rows="4" required></textarea></label>
+            <input type="hidden" name="email">
+            <button type="submit" class="primary-button">Simpan Perubahan</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="customerOrderModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close-customer-modal></div>
+    <div class="modal-dialog">
+      <div class="modal-heading"><h3 id="customerModalTitle">Buat Pesanan</h3><button type="button" data-close-customer-modal><i class="bi bi-x-lg"></i></button></div>
+      <div id="customerModalBody"></div>
+    </div>
+  </div>
+
+  <div id="customerToastContainer" class="toast-container"></div>
+  <div id="customerLoading" class="loading-overlay" hidden><div class="loading-spinner"></div><p>Memproses...</p></div>
+
+  <script src="../shared/config.js"></script>
+  <script src="../shared/api.js?v=review-persist-check"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="pembeli.js"></script>
+</body>
+</html>

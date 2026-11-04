@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1769d2">
+  <title>Daftar Akun | NAVERA Laundry & Care</title>
+  <link rel="icon" href="../assets/logo/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page register-page">
+
+  <main class="auth-wrapper">
+    <section class="auth-visual">
+      <a href="../index.html" class="auth-brand">
+        <span class="brand-icon"><i class="bi bi-droplet-half"></i></span>
+        <span>
+          <strong>NAVERA</strong>
+          <small>LAUNDRY & CARE</small>
+        </span>
+      </a>
+
+      <div class="visual-content">
+        <span class="visual-label">JOIN NAVERA</span>
+        <h1>Mulai pengalaman laundry yang lebih praktis.</h1>
+        <p>Buat akun NAVERA untuk memesan layanan laundry, memantau pesanan, dan menikmati perawatan pakaian yang berkualitas.</p>
+
+        <div class="visual-feature">
+          <span><i class="bi bi-check-circle-fill"></i></span>
+          <div>
+            <strong>Pemesanan Mudah</strong>
+            <small>Pesan layanan kapan saja.</small>
+          </div>
+        </div>
+
+        <div class="visual-feature">
+          <span><i class="bi bi-check-circle-fill"></i></span>
+          <div>
+            <strong>Informasi Transparan</strong>
+            <small>Pantau status pesanan dengan mudah.</small>
+          </div>
+        </div>
+
+        <div class="visual-feature">
+          <span><i class="bi bi-check-circle-fill"></i></span>
+          <div>
+            <strong>Layanan Antar Jemput</strong>
+            <small>Lebih nyaman tanpa harus keluar rumah.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-footer">
+        Every Fabric Deserves the Best Care.
+      </div>
+    </section>
+
+    <section class="auth-form-section">
+      <div class="auth-form-container register-container">
+        <a href="../index.html" class="mobile-brand">
+          <span class="brand-icon"><i class="bi bi-droplet-half"></i></span>
+          <span><strong>NAVERA</strong><small>LAUNDRY & CARE</small></span>
+        </a>
+
+        <div class="form-heading">
+          <span class="form-eyebrow">CREATE ACCOUNT</span>
+          <h2>Buat Akun Baru</h2>
+          <p>Lengkapi informasi berikut untuk membuat akun Pembeli NAVERA.</p>
+        </div>
+
+        <form id="registerForm" class="auth-form">
+          <div class="form-group">
+            <label for="registerName">Nama Lengkap</label>
+            <div class="input-wrapper">
+              <i class="bi bi-person"></i>
+              <input
+                type="text"
+                id="registerName"
+                name="name"
+                placeholder="Masukkan nama lengkap"
+                autocomplete="name"
+                maxlength="100"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="registerUsername">Username</label>
+            <div class="input-wrapper">
+              <i class="bi bi-person-badge"></i>
+              <input
+                type="text"
+                id="registerUsername"
+                name="username"
+                placeholder="Buat username"
+                autocomplete="username"
+                minlength="3"
+                maxlength="30"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="registerPhone">Nomor WhatsApp</label>
+            <div class="input-wrapper">
+              <i class="bi bi-phone"></i>
+              <input
+                type="tel"
+                id="registerPhone"
+                name="phone"
+                placeholder="Contoh: 081234567890"
+                autocomplete="tel"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="registerAddress">Alamat Lengkap</label>
+            <div class="input-wrapper textarea-wrapper">
+              <i class="bi bi-geo-alt"></i>
+              <textarea
+                id="registerAddress"
+                name="address"
+                placeholder="Nama jalan, dusun, desa, kecamatan..."
+                rows="3"
+                maxlength="500"
+                autocomplete="street-address"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <div class="input-wrapper">
+              <i class="bi bi-lock"></i>
+              <input
+                type="password"
+                id="registerPassword"
+                name="password"
+                placeholder="Minimal 8 karakter"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              >
+              <button type="button" class="password-toggle" data-password-toggle="registerPassword" aria-label="Tampilkan password">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Konfirmasi Password</label>
+            <div class="input-wrapper">
+              <i class="bi bi-shield-lock"></i>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Ulangi password"
+                autocomplete="new-password"
+                required
+              >
+              <button type="button" class="password-toggle" data-password-toggle="confirmPassword" aria-label="Tampilkan password">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <label class="terms-option">
+            <input type="checkbox" id="agreeTerms" required>
+            <span>Saya menyetujui ketentuan penggunaan layanan NAVERA.</span>
+          </label>
+
+          <button type="submit" class="auth-submit" id="registerButton">
+            <span>Buat Akun Pembeli</span>
+            <i class="bi bi-arrow-right"></i>
+          </button>
+
+          <div id="registerMessage" class="form-message" aria-live="polite"></div>
+        </form>
+
+        <div class="auth-divider"><span>ATAU</span></div>
+
+        <p class="auth-switch">
+          Sudah memiliki akun?
+          <a href="login.html">Masuk Sekarang</a>
+        </p>
+
+        <a href="../index.html" class="back-home">
+          <i class="bi bi-arrow-left"></i> Kembali ke Beranda
+        </a>
+
+        <p class="auth-copyright">© <span id="authYear"></span> NAVERA Laundry & Care.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="../shared/config.js"></script>
+  <script src="../shared/api.js?v=review-persist-check"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

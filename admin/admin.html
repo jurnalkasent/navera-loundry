@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1769d2">
+  <title>Admin Dashboard | NAVERA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div id="adminLoginScreen" class="role-login-screen" hidden>
+    <div class="role-login-card">
+      <div class="role-login-icon"><i class="bi bi-shield-lock"></i></div>
+      <h2>Admin NAVERA</h2>
+      <p>Silakan masuk untuk mengakses dashboard pengelola.</p>
+      <form id="adminLoginForm">
+        <label for="adminLoginPhone">Nomor WhatsApp</label>
+        <input id="adminLoginPhone" type="tel" required autocomplete="tel">
+        <label for="adminLoginPassword">Password</label>
+        <input id="adminLoginPassword" type="password" required autocomplete="current-password">
+        <button type="submit" id="adminLoginButton">Masuk Dashboard</button>
+        <div id="adminLoginMessage" class="form-message" aria-live="polite"></div>
+      </form>
+      <a href="../index.html">Kembali ke halaman utama</a>
+    </div>
+  </div>
+
+  <div id="adminApp" class="role-app" hidden>
+    <aside id="adminSidebar" class="sidebar">
+      <a href="../index.html" class="sidebar-brand">
+        <span class="sidebar-logo"><i class="bi bi-droplet-half"></i></span>
+        <span><strong>NAVERA</strong><small>LAUNDRY & CARE</small></span>
+      </a>
+
+      <div class="sidebar-profile">
+        <div class="profile-avatar" id="adminAvatar">A</div>
+        <div>
+          <strong id="adminName">Administrator</strong>
+          <small>Administrator</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-label">MENU UTAMA</span>
+        <button class="sidebar-link active" data-page="dashboard"><i class="bi bi-grid"></i><span>Dashboard</span></button>
+        <button class="sidebar-link" data-page="orders"><i class="bi bi-receipt"></i><span>Pesanan</span><span id="pendingOrderBadge" class="nav-badge">0</span></button>
+        <button class="sidebar-link" data-page="products"><i class="bi bi-box-seam"></i><span>Produk & Layanan</span></button>
+
+        <span class="nav-label">MANAJEMEN</span>
+        <button class="sidebar-link" data-page="customers"><i class="bi bi-people"></i><span>Pembeli</span></button>
+        <button class="sidebar-link" data-page="staff"><i class="bi bi-person-gear"></i><span>Staff Operasional</span></button>
+        <button class="sidebar-link" data-page="payments"><i class="bi bi-wallet2"></i><span>Pembayaran</span></button>
+        <button class="sidebar-link" data-page="reviews"><i class="bi bi-star"></i><span>Ulasan</span></button>
+
+        <span class="nav-label">LAINNYA</span>
+        <button class="sidebar-link" data-page="settings"><i class="bi bi-gear"></i><span>Pengaturan</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="../index.html" class="sidebar-link"><i class="bi bi-house"></i><span>Lihat Website</span></a>
+        <button id="adminLogoutButton" class="sidebar-link logout-link"><i class="bi bi-box-arrow-right"></i><span>Keluar</span></button>
+      </div>
+    </aside>
+
+    <div id="adminSidebarOverlay" class="sidebar-overlay"></div>
+
+    <main class="role-main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button id="adminMenuToggle" class="menu-toggle" aria-label="Buka menu"><i class="bi bi-list"></i></button>
+          <div>
+            <h1 id="adminPageTitle">Dashboard</h1>
+            <p>Selamat datang di NAVERA Laundry & Care.</p>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <span class="topbar-date" id="adminCurrentDate"></span>
+          <div class="topbar-user">
+            <span id="adminTopName">Admin</span>
+            <div class="profile-avatar small-avatar" id="adminTopAvatar">A</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="role-content">
+        <section id="adminPageDashboard" class="admin-page active" data-page="dashboard">
+          <div class="welcome-banner">
+            <div>
+              <span>ADMIN OVERVIEW</span>
+              <h2>Kelola NAVERA dengan lebih mudah.</h2>
+              <p>Pantau aktivitas laundry dan seluruh pesanan dalam satu tempat.</p>
+            </div>
+            <i class="bi bi-droplet-half"></i>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card"><span>Total Pesanan</span><strong id="adminStatOrders">0</strong><i class="bi bi-receipt"></i></article>
+            <article class="stat-card"><span>Pesanan Aktif</span><strong id="adminStatActiveOrders">0</strong><i class="bi bi-arrow-repeat"></i></article>
+            <article class="stat-card"><span>Total Pembeli</span><strong id="adminStatCustomers">0</strong><i class="bi bi-people"></i></article>
+            <article class="stat-card"><span>Total Pendapatan</span><strong id="adminStatRevenue">Rp0</strong><i class="bi bi-cash-stack"></i></article>
+          </div>
+
+          <div class="content-grid">
+            <section class="panel-card">
+              <div class="panel-heading">
+                <div><h3>Pesanan Terbaru</h3><p>Aktivitas pesanan terkini.</p></div>
+                <button class="text-button" data-open-page="orders">Lihat Semua</button>
+              </div>
+              <div class="table-responsive">
+                <table>
+                  <thead><tr><th>Kode</th><th>Pembeli</th><th>Total</th><th>Status</th></tr></thead>
+                  <tbody id="adminRecentOrders"><tr><td colspan="4">Memuat data...</td></tr></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel-card">
+              <div class="panel-heading"><div><h3>Ringkasan</h3><p>Informasi operasional.</p></div></div>
+              <div class="summary-list">
+                <div><span>Menunggu Persetujuan</span><strong id="adminWaitingOrders">0</strong></div>
+                <div><span>Menunggu Pembayaran</span><strong id="adminWaitingPayments">0</strong></div>
+                <div><span>Staff Aktif</span><strong id="adminActiveStaff">0</strong></div>
+                <div><span>Produk Aktif</span><strong id="adminActiveProducts">0</strong></div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section id="adminPageOrders" class="admin-page" data-page="orders">
+          <div class="page-toolbar">
+            <div><h2>Manajemen Pesanan</h2><p>Periksa, kelola, dan tugaskan pesanan pelanggan.</p></div>
+            <button class="primary-button" id="refreshOrdersButton"><i class="bi bi-arrow-clockwise"></i> Perbarui</button>
+          </div>
+          <div class="filter-bar">
+            <input type="search" id="orderSearch" placeholder="Cari kode atau nama pembeli...">
+            <select id="orderStatusFilter"><option value="">Semua Status</option></select>
+          </div>
+          <div class="panel-card table-responsive">
+            <table><thead><tr><th>Kode Pesanan</th><th>Pembeli</th><th>Tanggal</th><th>Total</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="adminOrdersTable"><tr><td colspan="6">Memuat data...</td></tr></tbody></table>
+          </div>
+        </section>
+
+        <section id="adminPageProducts" class="admin-page" data-page="products">
+          <div class="page-toolbar">
+            <div><h2>Produk & Layanan</h2><p>Kelola daftar layanan laundry dan harga.</p></div>
+            <button class="primary-button" id="addProductButton"><i class="bi bi-plus-lg"></i> Tambah Produk</button>
+          </div>
+          <div id="adminProductsGrid" class="management-grid"></div>
+        </section>
+
+        <section id="adminPageCustomers" class="admin-page" data-page="customers">
+          <div class="page-toolbar"><div><h2>Data Pembeli</h2><p>Informasi pelanggan NAVERA.</p></div></div>
+          <div class="filter-bar"><input type="search" id="customerSearch" placeholder="Cari nama atau nomor WhatsApp..."></div>
+          <div class="panel-card table-responsive">
+            <table><thead><tr><th>Nama</th><th>Nomor WhatsApp</th><th>Alamat</th><th>Status</th><th>Email</th></tr></thead><tbody id="adminCustomersTable"><tr><td colspan="5">Memuat data...</td></tr></tbody></table>
+          </div>
+        </section>
+
+        <section id="adminPageStaff" class="admin-page" data-page="staff">
+          <div class="page-toolbar">
+            <div><h2>Staff Operasional</h2><p>Kelola akun staff yang memproses pesanan di outlet.</p></div>
+            <button class="primary-button" id="addStaffButton"><i class="bi bi-plus-lg"></i> Tambah Staff</button>
+          </div>
+          <div class="panel-card table-responsive">
+            <table><thead><tr><th>Nama</th><th>Nomor WhatsApp</th><th>Alamat</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="adminStaffTable"><tr><td colspan="5">Memuat data...</td></tr></tbody></table>
+          </div>
+        </section>
+
+        <section id="adminPagePayments" class="admin-page" data-page="payments">
+          <div class="page-toolbar">
+            <div><h2>Pembayaran</h2><p>Verifikasi pembayaran dan kelola rekening serta QRIS.</p></div>
+            <button class="primary-button" id="addPaymentMethodButton"><i class="bi bi-plus-lg"></i> Metode Pembayaran</button>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card"><span>Menunggu Verifikasi</span><strong id="paymentWaitingCount">0</strong></article>
+            <article class="stat-card"><span>Pembayaran Berhasil</span><strong id="paymentSuccessCount">0</strong></article>
+          </div>
+          <div class="panel-card table-responsive">
+            <table><thead><tr><th>Kode Pesanan</th><th>Metode</th><th>Jumlah</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="adminPaymentsTable"><tr><td colspan="5">Memuat data...</td></tr></tbody></table>
+          </div>
+          <div class="panel-card">
+            <div class="panel-heading"><div><h3>Metode Pembayaran</h3><p>Rekening bank dan QRIS NAVERA.</p></div></div>
+            <div id="adminPaymentMethods"></div>
+          </div>
+        </section>
+
+        <section id="adminPageReviews" class="admin-page" data-page="reviews">
+          <div class="page-toolbar"><div><h2>Ulasan Pembeli</h2><p>Kelola ulasan yang ditampilkan secara publik.</p></div></div>
+          <div id="adminReviewsList" class="management-grid"></div>
+        </section>
+
+        <section id="adminPageSettings" class="admin-page" data-page="settings">
+          <div class="page-toolbar"><div><h2>Pengaturan Bisnis</h2><p>Atur informasi resmi NAVERA Laundry & Care.</p></div></div>
+          <div class="panel-card">
+            <form id="adminSettingsForm" class="settings-form">
+              <label>Nama Usaha<input type="text" id="settingBusinessName" name="businessName" required></label>
+              <label>Tagline<input type="text" id="settingTagline" name="tagline"></label>
+              <label>Nomor WhatsApp<input type="tel" id="settingPhone" name="phone"></label>
+              <label>Alamat Usaha<textarea id="settingAddress" name="address" rows="3"></textarea></label>
+              <label>Jam Operasional<input type="text" id="settingHours" name="hours"></label>
+              <label>Logo Usaha<input type="file" id="settingLogo" accept="image/*"></label>
+              <button type="submit" class="primary-button">Simpan Pengaturan</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div id="adminModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog">
+      <div class="modal-heading"><h3 id="adminModalTitle">Formulir</h3><button type="button" data-close-modal aria-label="Tutup"><i class="bi bi-x-lg"></i></button></div>
+      <div id="adminModalBody"></div>
+    </div>
+  </div>
+
+  <div id="adminToastContainer" class="toast-container"></div>
+  <div id="adminLoading" class="loading-overlay" hidden><div class="loading-spinner"></div><p>Memproses...</p></div>
+
+  <script src="../shared/config.js"></script>
+  <script src="../shared/api.js?v=review-persist-check"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

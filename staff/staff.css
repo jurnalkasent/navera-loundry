@@ -1,0 +1,51 @@
+.staff-content {
+  display: grid;
+  gap: 22px;
+}
+
+.staff-orders-panel {
+  padding: 22px;
+}
+
+.staff-orders-panel .panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.staff-orders-panel .filter-bar {
+  margin: 18px 0;
+}
+
+.staff-order-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.staff-order-actions button {
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.staff-empty {
+  padding: 32px 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .staff-orders-panel {
+    padding: 16px;
+  }
+
+  .staff-orders-panel .panel-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
